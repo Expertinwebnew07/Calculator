@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styletable.css" />
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <th colspan="4" class="display" id="display"></th> <!-- Moved inside a <tr> -->
+    </tr>
+    <tr>
+      <td colspan="2" class="Cancle a">C</td>
+      <td>/</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>8</td>
+      <td>7</td>
+      <td rowspan="2">+</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>00</td>
+      <td>.</td>
+      <td class="equal">=</td>
+    </tr>
+  </table>
+  <script>
+    let display = document.querySelector("#display"); // Use ID to select the display
+    let td = document.querySelectorAll("td");
+
+    let string = "";
+    td.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        if (e.target.textContent === "=") { // Using textContent instead of innerHTML
+          string = eval(string);
+          display.textContent = string;
+        } else if (e.target.textContent === "C") {
+          string = "";
+          display.textContent = string;
+        } else {
+          string += e.target.textContent; // Use += to append the clicked number
+          display.textContent = string;
+          console.log(string);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
